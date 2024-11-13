@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from "./components/Header.tsx";
+import Footer from "./components/Footer.tsx";
+import Banner from './components/base/banner/Banner.tsx';
+import Categorylist from './components/category-list/CategoryList.tsx'
+import Gamelist from './components/games/GameList.tsx'
+import GameProviderMenu from './components/category-list/GameProviderMenu/GameProviderMenu.tsx'
+import { ContextProvider } from './context/ContextProvider.tsx';
 
-function App() {
+const App = () => {
+  const styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      fontFamily: 'var(--font-geist-sans)',
+      boxSizing: 'border-box',
+    },
+    bannerDiv: {
+      display: 'flex',
+      width: '90%',
+      flexDirection: 'column',
+      flex: 1,
+      paddingTop: '3rem',
+      boxSizing: 'border-box',
+    },
+  };
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextProvider>
+      <div style={styles.container}>
+        <div style={styles.bannerDiv}>
+          <Header />
+          <Banner />
+          <Categorylist />
+          <Gamelist />
+        </div>
+        <Footer />
+        <GameProviderMenu />
+      </div>
+    </ContextProvider>
+
   );
-}
+};
 
 export default App;
